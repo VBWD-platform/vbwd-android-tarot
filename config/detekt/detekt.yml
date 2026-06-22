@@ -1,0 +1,30 @@
+# detekt config — built upon the default ruleset (buildUponDefaultConfig = true).
+# Only deltas live here; correctness rules stay at their defaults (eng-req:
+# no blanket silencing).
+
+complexity:
+  LongParameterList:
+    # DI constructors (composition root / ViewModels / the PlatformSdk forwarder)
+    # legitimately take several collaborators — the iOS init signatures do too.
+    functionThreshold: 8
+    constructorThreshold: 12
+  TooManyFunctions:
+    # The PlatformSdk facade + EventBus are wide ports of the iOS protocols;
+    # splitting them would break the single-seam contract (ISP at the boundary).
+    thresholdInClasses: 20
+    thresholdInInterfaces: 20
+
+naming:
+  FunctionNaming:
+    # Jetpack Compose @Composable functions are PascalCase by convention.
+    ignoreAnnotated: ["Composable"]
+
+style:
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+
+# formatting (ktlint-wrapping) rules are owned by the ktlint plugin + .editorconfig
+# to avoid two tools fighting over the same checks (DRY).
+formatting:
+  active: false
