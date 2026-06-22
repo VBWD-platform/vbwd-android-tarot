@@ -15,24 +15,32 @@ private class FakeTarotService(
     private val interpretation: String = "Insight.",
 ) : TarotService {
     override suspend fun fetchDailyLimits(): DailyLimits = limits
+
     override suspend fun createSession(): TaroSession = session
-    override suspend fun submitSituation(sessionId: String, text: String, language: String): String = interpretation
+
+    override suspend fun submitSituation(
+        sessionId: String,
+        text: String,
+        language: String,
+    ): String = interpretation
 }
 
 class TarotViewModelTest {
     @Test
-    fun `load sets the daily limits`() = runTest {
-        val vm = TarotViewModel(FakeTarotService())
-        vm.load()
-        assertEquals(2, vm.uiState.value.limits?.dailyRemaining)
-    }
+    fun `load sets the daily limits`() =
+        runTest {
+            val vm = TarotViewModel(FakeTarotService())
+            vm.load()
+            assertEquals(2, vm.uiState.value.limits?.dailyRemaining)
+        }
 
     @Test
-    fun `createSession then submitSituation populates the session and interpretation`() = runTest {
-        val vm = TarotViewModel(FakeTarotService())
-        vm.createSession()
-        assertEquals("s1", vm.uiState.value.session?.sessionId)
-        vm.submitSituation("help")
-        assertEquals("Insight.", vm.uiState.value.interpretation)
-    }
+    fun `createSession then submitSituation populates the session and interpretation`() =
+        runTest {
+            val vm = TarotViewModel(FakeTarotService())
+            vm.createSession()
+            assertEquals("s1", vm.uiState.value.session?.sessionId)
+            vm.submitSituation("help")
+            assertEquals("Insight.", vm.uiState.value.interpretation)
+        }
 }

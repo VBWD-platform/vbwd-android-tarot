@@ -20,19 +20,25 @@ private class FakeApi : ApiClient {
         jsonBody: String?,
         deserializer: DeserializationStrategy<T>,
     ): T = EmptyResponse() as T
+
     override fun setToken(token: String?) = Unit
-    override fun on(event: ApiEvent, handler: () -> Unit) = Unit
+
+    override fun on(
+        event: ApiEvent,
+        handler: () -> Unit,
+    ) = Unit
 }
 
 class TarotPluginContractTest {
     private fun sdk() = DefaultPlatformSdk(FakeApi(), ApiClientConfig("http://x"), DefaultEventBus(FakeApi()))
 
     @Test
-    fun `install registers the tarot route, menu item and translations`() = runTest {
-        val platform = sdk()
-        TarotPlugin().install(platform)
-        assertEquals(listOf("/tarot"), platform.getRoutes().map { it.path })
-        assertEquals(listOf("tarot"), platform.getMenuItems().map { it.id })
-        assertEquals("Tarot Card Reading", platform.getTranslations()["en"]?.get("tarot.title"))
-    }
+    fun `install registers the tarot route, menu item and translations`() =
+        runTest {
+            val platform = sdk()
+            TarotPlugin().install(platform)
+            assertEquals(listOf("/tarot"), platform.getRoutes().map { it.path })
+            assertEquals(listOf("tarot"), platform.getMenuItems().map { it.id })
+            assertEquals("Tarot Card Reading", platform.getTranslations()["en"]?.get("tarot.title"))
+        }
 }

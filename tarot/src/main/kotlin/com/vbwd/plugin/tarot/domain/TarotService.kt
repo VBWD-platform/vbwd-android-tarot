@@ -10,13 +10,18 @@ import kotlinx.serialization.Serializable
 /** Tarot API operations (DIP — testable). Port of the iOS protocol. */
 interface TarotService {
     suspend fun fetchDailyLimits(): DailyLimits
+
     suspend fun createSession(): TaroSession
-    suspend fun submitSituation(sessionId: String, text: String, language: String): String
+
+    suspend fun submitSituation(
+        sessionId: String,
+        text: String,
+        language: String,
+    ): String
 }
 
 /** Default impl backed by [ApiClient]. Port of `DefaultTarotService`. */
 class DefaultTarotService(private val api: ApiClient) : TarotService {
-
     override suspend fun fetchDailyLimits(): DailyLimits {
         val response = api.get<LimitsResponse>(TarotEndpoints.LIMITS)
         return response.limits.takeIf { response.success } ?: failure("Failed to load tarot limits")
@@ -28,11 +33,16 @@ class DefaultTarotService(private val api: ApiClient) : TarotService {
             ?: failure(response.message ?: "Failed to create session")
     }
 
-    override suspend fun submitSituation(sessionId: String, text: String, language: String): String {
-        val response = api.post<SituationBody, SituationResponse>(
-            TarotEndpoints.situation(sessionId),
-            SituationBody(situationText = text, language = language),
-        )
+    override suspend fun submitSituation(
+        sessionId: String,
+        text: String,
+        language: String,
+    ): String {
+        val response =
+            api.post<SituationBody, SituationResponse>(
+                TarotEndpoints.situation(sessionId),
+                SituationBody(situationText = text, language = language),
+            )
         return response.interpretation.takeIf { response.success }
             ?: failure(response.error ?: "Failed to submit situation")
     }

@@ -66,9 +66,10 @@ class TarotViewModel(private val service: TarotService) {
     suspend fun submitSituation(text: String) {
         val sessionId = _uiState.value.session?.sessionId ?: return
         try {
-            _uiState.value = _uiState.value.copy(
-                interpretation = service.submitSituation(sessionId, text, "en"),
-            )
+            _uiState.value =
+                _uiState.value.copy(
+                    interpretation = service.submitSituation(sessionId, text, "en"),
+                )
         } catch (error: ApiError) {
             _uiState.value = _uiState.value.copy(errorMessage = error.message)
         }
@@ -83,11 +84,12 @@ fun TarotScreen(viewModel: TarotViewModel) {
     LaunchedEffect(Unit) { viewModel.load() }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(PADDING)
-            .testTag("tarot_screen"),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(PADDING)
+                .testTag("tarot_screen"),
         verticalArrangement = Arrangement.spacedBy(PADDING),
     ) {
         Text("Tarot Card Reading", style = MaterialTheme.typography.headlineSmall)

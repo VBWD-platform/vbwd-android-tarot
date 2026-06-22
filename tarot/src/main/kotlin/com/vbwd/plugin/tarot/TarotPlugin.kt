@@ -17,20 +17,23 @@ import com.vbwd.plugin.tarot.ui.TarotViewModel
  * logic lives in the service/VM.
  */
 class TarotPlugin : Plugin {
-    override val metadata = PluginMetadata(
-        name = "tarot",
-        version = SemanticVersion(0, 1, 0),
-        description = "Tarot card reading with AI-powered interpretations.",
-        author = "VBWD",
-        keywords = listOf("tarot", "taro", "oracle", "divination"),
-        translations = mapOf("en" to TRANSLATIONS),
-    )
+    override val metadata =
+        PluginMetadata(
+            name = "tarot",
+            version = SemanticVersion(0, 1, 0),
+            description = "Tarot card reading with AI-powered interpretations.",
+            author = "VBWD",
+            keywords = listOf("tarot", "taro", "oracle", "divination"),
+            translations = mapOf("en" to TRANSLATIONS),
+        )
 
     override suspend fun install(sdk: PlatformSdk) {
         val service = DefaultTarotService(sdk.api)
-        sdk.addRoute(PluginRoute(path = "/tarot", name = "tarot", requiresAuth = true) {
-            TarotScreen(remember { TarotViewModel(service) })
-        })
+        sdk.addRoute(
+            PluginRoute(path = "/tarot", name = "tarot", requiresAuth = true) {
+                TarotScreen(remember { TarotViewModel(service) })
+            },
+        )
         sdk.addMenuItem(
             MenuItem(
                 id = "tarot",
@@ -47,12 +50,13 @@ class TarotPlugin : Plugin {
     private companion object {
         const val MENU_ORDER = 50
 
-        val TRANSLATIONS = mapOf(
-            "nav.tarot" to "Tarot",
-            "tarot.title" to "Tarot Card Reading",
-            "tarot.subtitle" to "Get AI-powered tarot interpretations and insights",
-            "tarot.createSession" to "Start Reading",
-            "tarot.dailyLimitReached" to "You've reached your daily session limit. Try again tomorrow.",
-        )
+        val TRANSLATIONS =
+            mapOf(
+                "nav.tarot" to "Tarot",
+                "tarot.title" to "Tarot Card Reading",
+                "tarot.subtitle" to "Get AI-powered tarot interpretations and insights",
+                "tarot.createSession" to "Start Reading",
+                "tarot.dailyLimitReached" to "You've reached your daily session limit. Try again tomorrow.",
+            )
     }
 }

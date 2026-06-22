@@ -36,10 +36,11 @@ data class Arcana(
 ) {
     val isMajorArcana: Boolean get() = arcanaType == "MAJOR_ARCANA"
     val suitName: String?
-        get() = when (arcanaType) {
-            "CUPS", "PENTACLES", "SWORDS", "WANDS" -> arcanaType
-            else -> null
-        }
+        get() =
+            when (arcanaType) {
+                "CUPS", "PENTACLES", "SWORDS", "WANDS" -> arcanaType
+                else -> null
+            }
 }
 
 @Serializable

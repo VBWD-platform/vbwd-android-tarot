@@ -24,10 +24,15 @@ import org.robolectric.annotation.GraphicsMode
 private class DemoTarotService : TarotService {
     override suspend fun fetchDailyLimits() =
         DailyLimits(dailyTotal = 3, dailyRemaining = 2, dailyUsed = 1, planName = "Pro", canCreate = true)
+
     override suspend fun createSession() =
         TaroSession(sessionId = "s1", status = TaroSessionStatus.ACTIVE, createdAt = "now")
-    override suspend fun submitSituation(sessionId: String, text: String, language: String) =
-        "The cards favour a bold move this week."
+
+    override suspend fun submitSituation(
+        sessionId: String,
+        text: String,
+        language: String,
+    ) = "The cards favour a bold move this week."
 }
 
 @RunWith(AndroidJUnit4::class)

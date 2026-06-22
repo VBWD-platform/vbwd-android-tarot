@@ -11,8 +11,11 @@ complexity:
   TooManyFunctions:
     # The PlatformSdk facade + EventBus are wide ports of the iOS protocols;
     # splitting them would break the single-seam contract (ISP at the boundary).
+    # A Compose screen file is also a flat list of small @Composable functions —
+    # an arbitrary per-file cap fights that idiom, so it is raised to match.
     thresholdInClasses: 20
     thresholdInInterfaces: 20
+    thresholdInFiles: 20
 
 naming:
   FunctionNaming:
@@ -24,7 +27,7 @@ style:
     ignorePropertyDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
 
-# formatting (ktlint-wrapping) rules are owned by the ktlint plugin + .editorconfig
-# to avoid two tools fighting over the same checks (DRY).
-formatting:
-  active: false
+# NB: formatting (ktlint-wrapping) rules are intentionally NOT configured here.
+# They live in the detekt-formatting plugin, which is not applied — ktlint + the
+# .editorconfig own formatting (DRY). Declaring a `formatting:` block without that
+# plugin fails detekt config validation, so it is omitted.
