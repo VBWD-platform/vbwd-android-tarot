@@ -1,0 +1,72 @@
+Business Source License 1.1
+
+License text copyright (c) [2026] Daniil Tkachev. All Rights Reserved.
+
+“Business Source License” is a trademark of MariaDB plc.
+
+Licensor:               Daniil Tkachev
+Licensed Work:          VBWD Platform and its parts (the "Licensed Work")
+                        The Licensed Work is (c) 2025-2045 Daniil Tkachev.
+
+Additional Use Grant:   The VBWD-core modules are free to use for commercial
+                        purposes (including any direct or indirect monetization,
+                        SaaS offering, commercial deployment, or incorporation into
+                        a revenue-generating product or service), provided that at
+                        all times your (and your affiliates') total annual sales
+                        directly or indirectly attributable to the Licensed Work
+                        (or any derivative, modified version, or product/service
+                        that embeds, relies on, or is delivered through VBWD) do
+                        NOT exceed the value of 6.7 BTC (six point seven Bitcoin)
+                        for the applicable reporting year.
+
+                        Valuation of the threshold:
+                        The value of 6.7 BTC is determined using the arithmetic
+                        average of the daily BTC/USD closing spot price over the
+                        relevant reporting year (the calendar year being assessed).
+                        Your annual sales are converted to USD using the fair market
+                        exchange rate for the same reporting year and compared
+                        against that averaged threshold.
+
+                        If your annual sales exceed this threshold, you must
+                        purchase a separate commercial license from the Licensor
+                        (or refrain from such exceeding production use).
+
+Change Date:            [Four years from first public release under this license, e.g. 2030-03-19]
+
+Change License:         Apache License, Version 2.0
+                        https://www.apache.org/licenses/LICENSE-2.0
+
+Additional Terms (if any): None
+
+Terms
+
+The Licensor hereby grants you the right to copy, modify, create derivative works,
+redistribute, and make non-production use of the Licensed Work.
+
+The Licensor may make an Additional Use Grant, above, permitting limited production use.
+
+Effective on the Change Date, or the fourth anniversary of the first publicly available
+distribution of a specific version of the Licensed Work under this License, whichever
+comes first, the Licensor hereby grants you rights under the terms of the Change License,
+and the rights granted in the paragraph above terminate.
+
+If your use of the Licensed Work does not comply with the requirements currently in
+effect as described in this License (including any applicable Additional Use Grant),
+you must purchase a commercial license from the Licensor, its affiliated entities,
+or authorized resellers, or you must refrain from using the Licensed Work.
+
+For the avoidance of doubt, you may use and modify the Licensed Work solely for
+non-production purposes (such as internal testing, evaluation, development, personal
+use, or educational use) without limitation under this License.
+
+You must include a copy of this License (including any applicable Additional Use Grant)
+with any redistribution or derivative work.
+
+DISCLAIMER
+
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE LICENSOR BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE LICENSED WORK
+OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
